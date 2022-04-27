@@ -13,13 +13,13 @@ def get_movies(category):
     '''
     Function that gets the json response to our url request
     '''
-    get_movies_url = base_url.format(category,api_key)
+    get_movies_url = base_url.format(category,api_key)  #'https://api.themoviedb.org/3/movie/{}?api_key={}'
 
-    with urllib.request.urlopen(get_movies_url) as url:
-        get_movies_data = url.read()
-        get_movies_response = json.loads(get_movies_data)
+    with urllib.request.urlopen(get_movies_url) as url: # with is a context manager
+        get_movies_data = url.read() # from buffer to json
+        get_movies_response = json.loads(get_movies_data) # from json to python dictionary
 
-        movie_results = None
+        movie_results = None #initialiser....
 
         if get_movies_response['results']:
             movie_results_list = get_movies_response['results']
